@@ -3,7 +3,7 @@
 namespace App\Command;
 
 use App\Services\Arrays;
-use App\Services\BinarySearchTree;
+use App\Services\AVLTree;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -13,10 +13,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(
-    name: 'Trees',
+    name: 'AVLTrees',
     description: 'Add a short description for your command',
 )]
-class TreesCommand extends Command
+class AVLTreesCommand extends Command
 {
     public function __construct()
     {
@@ -29,72 +29,76 @@ class TreesCommand extends Command
 
         //неотсортированный массив
         $start = (int) (microtime(true) * 1000);
-        $treeRandom = new BinarySearchTree();
+        $AVLRandom = new AVLTree();
         $arrRandom = new Arrays();
-        $treeRandom->setSize($n);
+        $AVLRandom->setSize($n);
         $arrRandom->setRandomArray($n);
         $elems = $arrRandom->getArr();
         $randomNumbers = array_rand($elems, $n / 10);
         //вставка
-        $treeRandom->setCmpZero();
-        $treeRandom->setAsgZero();
+        $AVLRandom->setCmpZero();
+        $AVLRandom->setAsgZero();
         foreach ($elems as $elem) {
-            $treeRandom->insert($elem);
+            $AVLRandom->insert($elem);
         }
         $end = (int) (microtime(true) * 1000) - $start;
-        $treeRandom->toString($end);
+        $AVLRandom->toString($end);
         //Поиск
-        $treeRandom->setCmpZero();
-        $treeRandom->setAsgZero();
+        $AVLRandom->setCmpZero();
+        $AVLRandom->setAsgZero();
+//        $treeRandom->setSize($n / 10);
         $start = (int) (microtime(true) * 1000);
         foreach ($randomNumbers as $num) {
-            $treeRandom->search($num);
+            $AVLRandom->search($num);
         }
         $end = (int) (microtime(true) * 1000) - $start;
-        $treeRandom->toString($end);
+        $AVLRandom->toString($end);
         //Удаление
-        $treeRandom->setCmpZero();
-        $treeRandom->setAsgZero();
+        $AVLRandom->setCmpZero();
+        $AVLRandom->setAsgZero();
+//        $treeRandom->setSize($n / 10);
         $start = (int) (microtime(true) * 1000);
         foreach ($randomNumbers as $num) {
-            $treeRandom->remove($num);
+            $AVLRandom->remove($num);
         }
         $end = (int) (microtime(true) * 1000) - $start;
-        $treeRandom->toString($end);
+        $AVLRandom->toString($end);
         echo '==================';
         //отсортированный массив
         $start = (int) (microtime(true) * 1000);
-        $treeSorted = new BinarySearchTree();
+        $AVLSorted = new AVLTree();
         $arrSorted = new Arrays();
-        $treeSorted->setSize($n);
+        $AVLSorted->setSize($n);
         $arrSorted->setSorted($n);
         $elems = $arrSorted->getArr();
         //вставка
-        $treeSorted->setCmpZero();
-        $treeSorted->setAsgZero();
+        $AVLSorted->setCmpZero();
+        $AVLSorted->setAsgZero();
         foreach ($elems as $elem) {
-            $treeSorted->insert($elem);
+            $AVLSorted->insert($elem);
         }
         $end = (int) (microtime(true) * 1000) - $start;
-        $treeSorted->toString($end);
+        $AVLSorted->toString($end);
         //Поиск
-        $treeSorted->setCmpZero();
-        $treeSorted->setAsgZero();
+        $AVLSorted->setCmpZero();
+        $AVLSorted->setAsgZero();
+//        $treeSorted->setSize($n / 10);
         $start = (int) (microtime(true) * 1000);
         foreach ($randomNumbers as $num) {
-            $treeSorted->search($num);
+            $AVLSorted->search($num);
         }
         $end = (int) (microtime(true) * 1000) - $start;
-        $treeSorted->toString($end);
+        $AVLSorted->toString($end);
         //Удаление
-        $treeSorted->setCmpZero();
-        $treeSorted->setAsgZero();
+        $AVLSorted->setCmpZero();
+        $AVLSorted->setAsgZero();
+//        $treeSorted->setSize($n / 10);
         $start = (int) (microtime(true) * 1000);
         foreach ($randomNumbers as $num) {
-            $treeSorted->remove($num);
+            $AVLSorted->remove($num);
         }
         $end = (int) (microtime(true) * 1000) - $start;
-        $treeSorted->toString($end);
+        $AVLSorted->toString($end);
         return Command::SUCCESS;
     }
 }
