@@ -34,7 +34,9 @@ class AVLTreesCommand extends Command
         $AVLRandom->setSize($n);
         $arrRandom->setRandomArray($n);
         $elems = $arrRandom->getArr();
-        $randomNumbers = array_rand($elems, $n / 10);
+        $randomElems = $elems;
+        shuffle($randomElems);
+        $randomNumbers = array_slice($randomElems, 0, $n / 10);
         //вставка
         $AVLRandom->setCmpZero();
         $AVLRandom->setAsgZero();
@@ -71,6 +73,9 @@ class AVLTreesCommand extends Command
         $AVLSorted->setSize($n);
         $arrSorted->setSorted($n);
         $elems = $arrSorted->getArr();
+        $randomElems = $elems;
+        shuffle($randomElems);
+        $randomNumbers = array_slice($randomElems, 0, $n / 10);
         //вставка
         $AVLSorted->setCmpZero();
         $AVLSorted->setAsgZero();

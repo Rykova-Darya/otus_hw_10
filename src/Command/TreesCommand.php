@@ -34,7 +34,9 @@ class TreesCommand extends Command
         $treeRandom->setSize($n);
         $arrRandom->setRandomArray($n);
         $elems = $arrRandom->getArr();
-        $randomNumbers = array_rand($elems, $n / 10);
+        $randomElems = $elems;
+        shuffle($randomElems);
+        $randomNumbers = array_slice($randomElems, 0, $n / 10);
         //вставка
         $treeRandom->setCmpZero();
         $treeRandom->setAsgZero();
@@ -69,6 +71,9 @@ class TreesCommand extends Command
         $treeSorted->setSize($n);
         $arrSorted->setSorted($n);
         $elems = $arrSorted->getArr();
+        $randomElems = $elems;
+        shuffle($randomElems);
+        $randomNumbers = array_slice($randomElems, 0, $n / 10);
         //вставка
         $treeSorted->setCmpZero();
         $treeSorted->setAsgZero();
